@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -19,8 +19,17 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void
     {
+        /**
+         * for forcinf ssl in production. Used by Render
+         * 
+         */
+
+
+         if (env('APP_ENV') == 'production') {
+            $url->forceScheme('https');
+        }
         
        /* Paginate a standard Laravel Collection.
         *
