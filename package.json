@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "nuxt-sanctum-auth": "^0.3.2"
+  }
+}
