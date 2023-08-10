@@ -47,6 +47,7 @@ class CompanyController extends Controller
             'currency' => $req['currency'],
             'registry_by_user' => $req['acct_type'],
             'admin' => Auth::user()->id,
+            'logo' => $req['logo']
 
         ]);
 
@@ -110,7 +111,7 @@ class CompanyController extends Controller
         // if (!is_string($imagepath) && !empty($imagepath)) {
         //     $image_path = $imagepath->store('public/');
         // } else {
-            $image_path = '';
+            //$image_path = '';
         //}
 
         $upd = Auth::user()->company->update([
@@ -123,7 +124,7 @@ class CompanyController extends Controller
             'timezone' => $req['timezone'],
             'currency' => $req['currency'],
             'registry_by_user' => $req['acct_type'],
-            'logo' => $image_path,
+            'logo' => $req['logo'],
 
         ]);
 

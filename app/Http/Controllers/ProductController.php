@@ -33,11 +33,12 @@ class ProductController extends Controller
             'alert_level' => ['integer', 'min:0', 'required']
         ]);
 
-        if (!is_string($request->image) && !empty($request->image)) {
-            $image_path = $request->image->store('public/products');
-        } else {
-            $image_path = '';
-        }
+        // if (!is_string($request->image) && !empty($request->image)) {
+        //     $image_path = $request->image->store('public/products');
+        // } else {
+        //     $image_path = '';
+        // }
+
         $user = Auth::user();
 
         $newProduct = $user->company->products()->create([
@@ -49,7 +50,7 @@ class ProductController extends Controller
             'alert_level' => $request->alert_level,
             //'type' => $request->type,
             'units' => $request->unit,
-            'image' => $image_path,
+            'image' => $request->image
 
         ]);
 
@@ -84,11 +85,11 @@ class ProductController extends Controller
         
         if ($request->update) {
 
-            if (!is_string($request->image) && !empty($request->image)) {
-                $image_path = $request->image->store('public/products');
-            } else {
+            // if (!is_string($request->image) && !empty($request->image)) {
+            //     $image_path = $request->image->store('public/products');
+            // } else {
                 $image_path = $request->image;
-            }
+            //}
     
             $product->update([
                 'sku' => $request->sku,
